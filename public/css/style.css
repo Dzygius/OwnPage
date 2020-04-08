@@ -10,7 +10,7 @@ body {
 
 header {
     color: honeydew;
-    background-image: url(Photos/UkrinaiUp.jpg);
+    background-image: url(../UkrinaiUp.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
@@ -42,12 +42,18 @@ nav a.active {
 }
 
 .signup {
+    display: block;
     float: right;
     color: burlywood;
 }
 
+#loggedIN {
+    display: none;
+    float: right;
+}
+
 .content {
-    background-image: url(Photos/SnowStorm.jpg);
+    background-image: url(../SnowStorm.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
