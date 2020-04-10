@@ -37,14 +37,13 @@ nav a:hover {
 }
 
 nav a.active {
-    background-color: #4CAF50;
-    color: white;
+    background-color: rgba(255, 255, 255, 0.274);
+    color: wheat;
 }
 
 .signup {
     display: block;
     float: right;
-    color: burlywood;
 }
 
 #loggedIN {
@@ -58,6 +57,14 @@ nav a.active {
     background-size: cover;
     width: 100%;
     height: 1110px;
+}
+
+#myBtnUp {
+    color: #FFB456;
+}
+
+#myBtnIn {
+    color: #FFB456;
 }
 
 .LV {

@@ -4,6 +4,7 @@ const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const dbConnection = require('./database');
 const { body, validationResult } = require('express-validator');
+//const logins = require('./public/js/loggedin.js');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -13,7 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.static('Pages'));
-app.use(express.static('Photos'));
+app.use(express.static('Images'));
 
 // APPLY COOKIE SESSION MIDDLEWARE
 app.use(cookieSession({
@@ -25,6 +26,7 @@ app.use(cookieSession({
 // DECLARING CUSTOM MIDDLEWARE
 const ifNotLoggedin = (req, res, next) => {
     if (!req.session.isLoggedIn) {
+        //  logins.notlogged();
         return res.render('index');
     }
     next();
@@ -32,6 +34,7 @@ const ifNotLoggedin = (req, res, next) => {
 
 const ifLoggedin = (req, res, next) => {
         if (req.session.isLoggedIn) {
+            // logins.logged();
             return res.redirect('/home');
         }
         next();
@@ -125,7 +128,7 @@ app.post('/', ifLoggedin, [
                         if (compare_result === true) {
                             req.session.isLoggedIn = true;
                             req.session.userID = rows[0].id;
-
+                            // logins.logged();
                             res.redirect('/');
                         } else {
                             res.render('index', {
@@ -157,6 +160,7 @@ app.post('/', ifLoggedin, [
 app.get('/logout', (req, res) => {
     //session destroy
     req.session = null;
+    //  logins.notlogged();
     res.redirect('/');
 });
 // END OF LOGOUT
