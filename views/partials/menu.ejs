@@ -1,0 +1,70 @@
+<nav class="">
+    <div id="navig">
+        <a href="/">Pradzia</a>
+        <a href="/Kultura">Kultūra</a>
+        <a href="/LankytinosVietos">Lankytinos Vietos</a>
+        <a href="/KasVyksta">Kas Vyksta</a>
+        <a href="/Saviveiklos">Saviveiklos</a>
+        <a id="myBtnUp" class="signup">Registracija</a>
+        <a id="myBtnIn" class="signup">Prisijungimas</a>
+
+    </div>
+
+
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="navHam()">
+        <i class="fa fa-bars"></i>
+    </a>
+</nav>
+<div id="In" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Prisijungimas</h2>
+            <span class="closeIn">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form class="logins" action="" method="POST">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="pwd" placeholder="Slaptažodis">
+                <% if (locals.login_errors) { 
+                    login_errors.forEach(function(error_msg){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error_msg %>
+                    </div>
+                    <% });
+                  } %>
+                        <div class="modal-footer">
+                            <button type="submit" class="sign-btn">Prisijungti</button>
+                        </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="Up" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Registracija</h2>
+            <span class="closeUp">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form class="logins" action="/register" method="POST" novalidate>
+                <input type="text" name="username" placeholder="Jūsų Vardas" value="<%= (locals.old_data) ? old_data.username : ''; %>" required>
+                <input type="email" name="email" placeholder="Email" value="<%= (locals.old_data) ? old_data.user_email : ''; %>" required>
+                <input type="password" name="pwd" placeholder="Slaptazodis" required>
+                <% if (locals.register_error) { 
+                    register_error.forEach(function(error_msg){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error_msg %>
+                    </div>
+                    <% });
+                  } %>
+                        <div class="modal-footer">
+                            <button type="submit" class="sign-btn">Prisiregistruoti</button>
+                        </div>
+            </form>
+        </div>
+
+    </div>
+</div>

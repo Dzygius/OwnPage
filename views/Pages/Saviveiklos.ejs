@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include ('../partials/head') -%>
+
+
+    <body>
+        <header>
+            <h1>Saviveiklos</h1>
+        </header>
+
+        <%- include ('../partials/menu') -%>
+
+            <div class="content">
+                <button class="xmlparsing" type="button" onclick="loadDoc()">Parodyti failo turinį</button>
+                <br><br>
+                <div>
+                    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+                    <table id="demo"></table>
+                </div>
+            </div>
+
+            <%- include ('../partials/footer') -%>
+
+
+    </body>
+    <%- include ('../partials/scripts') -%>
+
+
+</html>

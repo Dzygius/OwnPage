@@ -13,9 +13,19 @@ app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(express.static('Pages'));
 app.use(express.static('Images'));
-
+app.get('/Kultura', function(req, res) {
+    res.render('pages/Kultura');
+});
+app.get('/KasVyksta', function(req, res) {
+    res.render('pages/KasVyksta');
+});
+app.get('/LankytinosVietos', function(req, res) {
+    res.render('pages/LankytinosVietos');
+});
+app.get('/Saviveiklos', function(req, res) {
+    res.render('pages/Saviveiklos');
+});
 // APPLY COOKIE SESSION MIDDLEWARE
 app.use(cookieSession({
     name: 'session',
@@ -27,7 +37,7 @@ app.use(cookieSession({
 const ifNotLoggedin = (req, res, next) => {
     if (!req.session.isLoggedIn) {
         //  logins.notlogged();
-        return res.render('index');
+        return res.render('Pages/index');
     }
     next();
 }
@@ -35,7 +45,7 @@ const ifNotLoggedin = (req, res, next) => {
 const ifLoggedin = (req, res, next) => {
         if (req.session.isLoggedIn) {
             // logins.logged();
-            return res.redirect('/home');
+            return res.redirect('pages/home');
         }
         next();
     }
@@ -45,7 +55,7 @@ const ifLoggedin = (req, res, next) => {
 app.get('/', ifNotLoggedin, (req, res, next) => {
     dbConnection.execute("SELECT `name` FROM `users` WHERE `id`=?", [req.session.userID])
         .then(([rows]) => {
-            res.render('home', {
+            res.render('pages/home', {
                 name: rows[0].name
             });
         });
@@ -96,7 +106,7 @@ app.post('/register', ifLoggedin,
                 return error.msg;
             });
             // REDERING index PAGE WITH VALIDATION ERRORS
-            res.render('index', {
+            res.render('pages/index', {
                 register_error: allErrors,
                 old_data: req.body
             });
@@ -131,7 +141,7 @@ app.post('/', ifLoggedin, [
                             // logins.logged();
                             res.redirect('/');
                         } else {
-                            res.render('index', {
+                            res.render('pages/index', {
                                 login_errors: ['Invalid Password!']
                             });
                         }
@@ -149,7 +159,7 @@ app.post('/', ifLoggedin, [
             return error.msg;
         });
         // REDERING index PAGE WITH LOGIN VALIDATION ERRORS
-        res.render('index', {
+        res.render('pages/index', {
             login_errors: allErrors
         });
     }

@@ -32,11 +32,6 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-nav a.active {
     background-color: rgba(255, 255, 255, 0.274);
     color: wheat;
 }
@@ -51,14 +46,6 @@ nav a.active {
     float: right;
 }
 
-.content {
-    background-image: url(../SnowStorm.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 1110px;
-}
-
 #myBtnUp {
     color: #FFB456;
 }
@@ -67,17 +54,69 @@ nav a.active {
     color: #FFB456;
 }
 
+.content {
+    background-image: url(../SnowStorm.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 1110px;
+    padding: 1%;
+}
+
 .LV {
     margin-left: 5%;
+    margin-bottom: 5%;
     height: 100px;
     width: 90%;
-    background-color: hotpink;
+    border: solid;
+    border-color: rgb(172, 240, 233, 0.3);
 }
 
 .photo {
+    float: left;
     width: 30%;
-    height: 100px;
-    background-color: indigo;
+    height: 94px;
+    background: center;
+    background-size: cover;
+}
+
+.idk {
+    margin-left: 10%;
+    font-size: 25px;
+}
+
+.tekstas {
+    font-size: 15px;
+}
+
+.overlay {
+    margin-left: 3%;
+    position: absolute;
+    top: -1%;
+    left: 0;
+    right: 0;
+    background-color: rgb(2, 141, 187);
+    overflow: hidden;
+    width: 93%;
+    height: 0;
+    transition: .5s ease;
+}
+
+.imgtext:hover .overlay {
+    bottom: 0;
+    height: 10%;
+}
+
+.text {
+    color: black;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 footer {
@@ -222,14 +261,71 @@ label {
     }
 }
 
-@media only screen and (max-device-width: 480px) {
-    /* styles for mobile browsers smaller than 480px; (iPhone) */
+
+/* Style the hamburger menu */
+
+.nav #navig {
+    display: none;
 }
 
-@media only screen and (min-width: 768px) {
+table,
+th,
+td {
+    margin-left: 10px;
+    border: 2px solid black;
+    border-collapse: collapse;
+    color: white;
+    margin-right: 15px;
+    padding-right: 15px;
+    text-align: center;
+}
+
+.pavad {
+    text-align: center;
+    color: crimson;
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 20%;
+}
+
+@media only screen and (max-device-width: 810px) {
+    /* styles for mobile browsers smaller than 480px; (iPhone) */
+    footer {
+        background-color: blanchedalmond;
+    }
+    #navig {
+        display: none;
+    }
+    nav a {
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+        width: 100%;
+    }
+    nav a.icon {
+        background: black;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 48px;
+        width: 50px;
+    }
+    .modal-content {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 811px) {
     /* default iPad screens */
     footer {
         background-color: green;
+    }
+    nav a.icon {
+        display: none;
+    }
+    #navig {
+        display: block;
     }
 }
 
@@ -237,5 +333,11 @@ label {
     /* styles for browsers larger than 960px; */
     footer {
         background-color: darkcyan;
+    }
+    .LV {
+        height: 300px;
+    }
+    .photo {
+        height: 294px;
     }
 }
