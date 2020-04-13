@@ -1,12 +1,14 @@
 <nav class="">
     <div id="navig">
-        <a href="/">Pradzia</a>
-        <a href="/Kultura">Kultūra</a>
-        <a href="/LankytinosVietos">Lankytinos Vietos</a>
-        <a href="/KasVyksta">Kas Vyksta</a>
-        <a href="/Saviveiklos">Saviveiklos</a>
-        <a id="myBtnUp" class="signup">Registracija</a>
-        <a id="myBtnIn" class="signup">Prisijungimas</a>
+        <a class="menu" key="Pradzia" href="/">Pradzia</a>
+        <a class="menu" key="Kultura" href="/Kultura">Kultūra</a>
+        <a class="menu" key="LankytinosVietos" href="/LankytinosVietos">Lankytinos Vietos</a>
+        <a class="menu" key="KasVyksta" href="/KasVyksta">Kas Vyksta</a>
+        <a class="menu" key="Saviveiklos" href="/Saviveiklos">Saviveiklos</a>
+        <a class="language" key="EN" id="EN"> EN</a>
+        <a class="language" key="LT" id="LT"> LT</a>
+        <a id="myBtnUp" class="signup" key="Register">Registracija</a>
+        <a id="myBtnIn" class="signup" key="Login">Prisijungti</a>
 
     </div>
 
@@ -19,7 +21,7 @@
 <div id="In" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header" key="Loging">
             <h2>Prisijungimas</h2>
             <span class="closeIn">&times;</span>
         </div>
@@ -35,7 +37,7 @@
                     <% });
                   } %>
                         <div class="modal-footer">
-                            <button type="submit" class="sign-btn">Prisijungti</button>
+                            <button type="submit" class="sign-btn" key="Login">Prisijungti</button>
                         </div>
             </form>
         </div>
@@ -44,7 +46,7 @@
 <div id="Up" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header" key="Register">
             <h2>Registracija</h2>
             <span class="closeUp">&times;</span>
         </div>
@@ -61,7 +63,7 @@
                     <% });
                   } %>
                         <div class="modal-footer">
-                            <button type="submit" class="sign-btn">Prisiregistruoti</button>
+                            <button type="submit" class="sign-btn" key="SignUp">Prisiregistruoti</button>
                         </div>
             </form>
         </div>

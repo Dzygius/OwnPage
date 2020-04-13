@@ -14,38 +14,24 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.static('Images'));
-app.get('/Kultura', function(req, res) {
-    res.render('pages/Kultura');
-});
-app.get('/KasVyksta', function(req, res) {
-    res.render('pages/KasVyksta');
-});
-app.get('/LankytinosVietos', function(req, res) {
-    res.render('pages/LankytinosVietos');
-});
-app.get('/Saviveiklos', function(req, res) {
-    res.render('pages/Saviveiklos');
-});
+
 // APPLY COOKIE SESSION MIDDLEWARE
 app.use(cookieSession({
     name: 'session',
     keys: ['key1', 'key2'],
     maxAge: 3600 * 1000 // 1hr
 }));
-
 // DECLARING CUSTOM MIDDLEWARE
 const ifNotLoggedin = (req, res, next) => {
     if (!req.session.isLoggedIn) {
-        //  logins.notlogged();
-        return res.render('Pages/index');
+        return res.render('Pages/index', { isLoggedIn: req.session.isLoggedIn });
     }
     next();
 }
 
 const ifLoggedin = (req, res, next) => {
         if (req.session.isLoggedIn) {
-            // logins.logged();
-            return res.redirect('pages/home');
+            return res.redirect('Pages/index', { isLoggedIn: req.session.isLoggedIn });
         }
         next();
     }
@@ -55,13 +41,48 @@ const ifLoggedin = (req, res, next) => {
 app.get('/', ifNotLoggedin, (req, res, next) => {
     dbConnection.execute("SELECT `name` FROM `users` WHERE `id`=?", [req.session.userID])
         .then(([rows]) => {
-            res.render('pages/home', {
-                name: rows[0].name
+            res.render('Pages/index', {
+                name: rows[0].name,
+                isLoggedIn: req.session.isLoggedIn
             });
         });
-
 }); // END OF ROOT PAGE
-
+app.get('/Kultura', ifNotLoggedin, (req, res, next) => {
+    dbConnection.execute("SELECT `name` FROM `users` WHERE `id`=?", [req.session.userID])
+        .then(([rows]) => {
+            res.render('Pages/Kultura', {
+                name: rows[0].name,
+                isLoggedIn: req.session.isLoggedIn
+            });
+        });
+});
+app.get('/KasVyksta', ifNotLoggedin, (req, res, next) => {
+    dbConnection.execute("SELECT `name` FROM `users` WHERE `id`=?", [req.session.userID])
+        .then(([rows]) => {
+            res.render('Pages/KasVyksta', {
+                name: rows[0].name,
+                isLoggedIn: req.session.isLoggedIn
+            });
+        });
+});
+app.get('/LankytinosVietos', ifNotLoggedin, (req, res, next) => {
+    dbConnection.execute("SELECT `name` FROM `users` WHERE `id`=?", [req.session.userID])
+        .then(([rows]) => {
+            res.render('Pages/LankytinosVietos', {
+                name: rows[0].name,
+                isLoggedIn: req.session.isLoggedIn
+            });
+        });
+});
+app.get('/Saviveiklos', ifNotLoggedin, (req, res, next) => {
+    dbConnection.execute("SELECT `name` FROM `users` WHERE `id`=?", [req.session.userID])
+        .then(([rows]) => {
+            res.render('Pages/Saviveiklos', {
+                name: rows[0].name,
+                isLoggedIn: req.session.isLoggedIn
+            });
+        });
+});
 
 // REGISTER PAGE
 app.post('/register', ifLoggedin,
@@ -107,6 +128,7 @@ app.post('/register', ifLoggedin,
             });
             // REDERING index PAGE WITH VALIDATION ERRORS
             res.render('pages/index', {
+                isLoggedIn: req.session.isLoggedIn,
                 register_error: allErrors,
                 old_data: req.body
             });
@@ -138,10 +160,10 @@ app.post('/', ifLoggedin, [
                         if (compare_result === true) {
                             req.session.isLoggedIn = true;
                             req.session.userID = rows[0].id;
-                            // logins.logged();
                             res.redirect('/');
                         } else {
                             res.render('pages/index', {
+                                isLoggedIn: req.session.isLoggedIn,
                                 login_errors: ['Invalid Password!']
                             });
                         }
@@ -160,7 +182,8 @@ app.post('/', ifLoggedin, [
         });
         // REDERING index PAGE WITH LOGIN VALIDATION ERRORS
         res.render('pages/index', {
-            login_errors: allErrors
+            login_errors: allErrors,
+            isLoggedIn: req.session.isLoggedIn
         });
     }
 });

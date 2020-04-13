@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 
 <%- include ('../partials/head') -%>
 
@@ -7,14 +7,24 @@
         <header>
             <h1>Ukrinai</h1>
         </header>
+        <% if(isLoggedIn){ %>
+            <%- include ('../partials/menulogged') -%>
+                <% } else {%>
+                    <%- include ('../partials/menu') -%>
+                        <%}%>
 
-        <%- include ('../partials/menu') -%>
 
-            <div class="content">
-                <p>aaaaa</p>
-            </div>
 
-            <%- include ('../partials/footer') -%>
+                            <div class="content">
+                                <div class="mainas">
+                                    <h1 class="mainas" key="info0">Kad matytumete kituose puslapiuose esančia informacija turite prisijungti</h1>
+                                    <h2 class="mainas" key="info1">Apie Ukrinus</h2>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17580.110697078366!2d22.08356176502663!3d56.29863675698564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e5635d87ce8ce9%3A0x635605a6a3edfc18!2sUkrinai!5e0!3m2!1sen!2slt!4v1586680480573!5m2!1sen!2slt"
+                                        width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                                </div>
+                            </div>
+
+                            <%- include ('../partials/footer') -%>
 
 
     </body>

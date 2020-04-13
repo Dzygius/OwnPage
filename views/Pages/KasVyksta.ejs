@@ -5,40 +5,37 @@
 
     <body>
         <header>
-            <h1>Kas Vyksta Ukrinuose</h1>
+            <h1 class="forlang" key="KasVykstaHeader">Kas Vyksta Ukrinuose</h1>
         </header>
 
-        <%- include ('../partials/menu') -%>
+        <% if(isLoggedIn){ %>
+            <%- include ('../partials/menulogged') -%>
+                <% } else {%>
+                    <%- include ('../partials/menu') -%>
+                        <%}%>
+                            <div class="content">
+                                <div class="LV">
+                                    <div class="photo" style="background-image: url(koplytstulpis.jfif);">
 
-
-            <div class="content">
-                <div class="LV">
-                    <div class="photo" style="background-image: url(Ukrinu_koplytstulpis_resize.jfif);">
-
-                    </div>
-                    <div class="idk">
-                        Koplystulpis
-                        <div class="tekstas">
-                            Ukrinų koplytstulpis baudžiavos panaikinimui atminti
-                        </div>
-                    </div>
-                </div>
-                <div class="LV">
-                    <div class="photo">
-                        <img src="" alt="Photos">
-                    </div>
-                    <div class="idk">
-                        Ukrinai
-                        <div class="tekstas">
-                            Geras kaimelis
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <%- include ('../partials/footer') -%>
-
-
+                                    </div>
+                                    <div class="idk" key="">
+                                        Koplytstulpis
+                                        <div class="tekstas" key="">
+                                            Ukrinų koplytstulpis baudžiavos panaikinimui atminti
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="LV">
+                                    <div class="photo" style="background-image: url(Upe.jpg);">
+                                    </div>
+                                    <div class="idk" key="">
+                                        Upe
+                                        <div class="tekstas" key="">
+                                            Varduvos Upe </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <%- include ('../partials/footer') -%>
     </body>
     <%- include ('../partials/scripts') -%>
 
