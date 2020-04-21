@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%- include ('../partials/head') -%>
+    <%- include ('../partials/head') -%>
 
     <body>
         <header>
@@ -9,33 +9,31 @@
         </header>
 
         <% if(isLoggedIn){ %>
-            <%- include ('../partials/menulogged') -%>
-                <% } else {%>
-                    <%- include ('../partials/menu') -%>
-                        <%}%>
-                            <div class="content">
-                                <div class="LV">
-                                    <div class="photo" style="background-image: url(koplytstulpis.jfif);">
-
-                                    </div>
-                                    <div class="idk" key="">
-                                        Koplytstulpis
-                                        <div class="tekstas" key="">
-                                            Ukrinų koplytstulpis baudžiavos panaikinimui atminti
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="LV">
-                                    <div class="photo" style="background-image: url(Upe.jpg);">
-                                    </div>
-                                    <div class="idk" key="">
-                                        Upe
-                                        <div class="tekstas" key="">
-                                            Varduvos Upe </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <%- include ('../partials/footer') -%>
+        <%- include ('../partials/menulogged') -%>
+        <% } else {%>
+        <%- include ('../partials/menu') -%>
+        <%}%>
+            <div class="content">
+                <div class="LV">
+                    <div class="photo" style="background-image: url(koplytstulpis.jfif);"></div>
+                    <div class="idk" key="">
+                        Koplytstulpis
+                        <div class="tekstas" key="">
+                            Ukrinų koplytstulpis baudžiavos panaikinimui atminti
+                        </div>
+                    </div>
+                </div>
+                <div class="LV">
+                    <div class="photo" style="background-image: url(Upe.jfif);"></div>
+                    <div class="idk" key="">
+                        Upe
+                        <div class="tekstas" key="">
+                            Varduvos Upe
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <%- include ('../partials/footer') -%>
     </body>
     <%- include ('../partials/scripts') -%>
 
